@@ -2,7 +2,14 @@
 
 A really simple poll engine designed to allow extensive integration with existing codebase.
 
-## A) File Structure
+## A) Getting Started
+
+To get started, clone this repository to a directory desired. This readme file 
+will assume that you clone to a directory called poll/.
+
+    git clone https://github.com/TheOnly92/Simple-Poll-Engine.git poll
+
+## B) File Structure
 
 I've done my best to reduce the number of files as possible, the following will
 be a brief description of what the files are representing under the poll/
@@ -26,7 +33,7 @@ poll
  + init.php         This file will initialize the poll script.
  + usecases.php     Most of the business logic is included in this file.
 
-## B) Installation
+## C) Installation
 
 Generally just upload all the files under the poll/ directory to your public
 web root. Edit config.php to suit your needs (database server, name, etc). Also
@@ -38,7 +45,7 @@ you have your own web application, you can configure the variable ``$config['adm
 to your interactor class which must implement the interface AdminInteractorInterface.
 More explanation on that on later section.
 
-## C) Access Admin Panel
+## D) Access Admin Panel
 
 Once you have uploaded the poll/ directory to your public web root, point your
 browser to the specific directory (e.g. http://localhost/poll/). The admin panel
@@ -49,7 +56,7 @@ and admin for password.
 
 Here you can create new polls, modify them, delete, close and view their results.
 
-## D) Integrating Polls
+## E) Integrating Polls
 
 To integrate polls into your php script, add the following line to the desired
 place:
@@ -59,7 +66,7 @@ place:
 Now, you can optionally provide a parameter to the SPE_Poll function for your 
 user ID interactor. More on this next section.
 
-## E) Integrating with Your Web App
+## F) Integrating with Your Web App
 
 There are 2 aspects you can integrate, the user part and the admin part. Let's 
 talk about the admin part first.
