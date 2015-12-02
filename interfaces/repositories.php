@@ -13,11 +13,11 @@ class DbPollRepository extends DbRepo implements PollRepository {
 
     public function Store(DomainPoll $poll) {
         if (!$poll->Id) {
-            $rt = $this->db->Exec("INSERT INTO {$this->prefix}polls (question, close_date, vote_repeating, cookie_expire, show_hide_results, order_results, created, randomize_order, closed) VALUES (?,?,?,?,?,?,?,?,?)", array($poll->Question, $poll->CloseDate, $poll->VoteRepeating, $poll->CookieExpire, $poll->ShowHideResults, $poll->OrderResults, time(), $poll->RandomizeOrder, $poll->Closed));
+            $rt = $this->db->Exec("INSERT INTO {$this->prefix}polls (question, close_date, vote_repeating, cookie_expire, show_hide_results, order_results, created, randomize_order, closed) VALUES (?,?,?,?,?,?,?,?,?)", array($poll->Question, $poll->CloseDate, $poll->VoteRepeating, $poll->CookieExpire, $poll->ShowHideResults, $poll->OrderResults, time(), (bool)$poll->RandomizeOrder, (bool)$poll->Closed));
             $poll->Id = $rt->LastInsertId();
             return $poll;
         } else {
-            $this->db->Exec("UPDATE {$this->prefix}polls SET question = ?, close_date = ?, vote_repeating = ?, cookie_expire = ?, show_hide_results = ?, order_results = ?, randomize_order = ?, closed = ? WHERE id = ?", array($poll->Question, $poll->CloseDate, $poll->VoteRepeating, $poll->CookieExpire, $poll->ShowHideResults, $poll->OrderResults, $poll->RandomizeOrder, $poll->Closed, $poll->Id));
+            $this->db->Exec("UPDATE {$this->prefix}polls SET question = ?, close_date = ?, vote_repeating = ?, cookie_expire = ?, show_hide_results = ?, order_results = ?, randomize_order = ?, closed = ? WHERE id = ?", array($poll->Question, $poll->CloseDate, $poll->VoteRepeating, $poll->CookieExpire, $poll->ShowHideResults, $poll->OrderResults, (bool)$poll->RandomizeOrder, (bool)$poll->Closed, $poll->Id));
         }
     }
 
