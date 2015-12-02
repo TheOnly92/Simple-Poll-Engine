@@ -23,7 +23,7 @@ class DbPollRepository extends DbRepo implements PollRepository {
 
     public function StoreAnswer(DomainPollAnswer $answer) {
         if (!$answer->Id) {
-            $rt = $this->db->Exec("INSERT INTO {$this->prefix}poll_answers (poll_id, answer, sort_order) VALUES (?,?,?)", array($answer->PollId, $answer->Answer, $answer->Order));
+            $rt = $this->db->Exec("INSERT INTO {$this->prefix}poll_answers (poll_id, answer, sort_order, image) VALUES (?,?,?,0)", array($answer->PollId, $answer->Answer, $answer->Order));
             $answer->Id = $rt->LastInsertId();
             return $answer;
         } else {
